@@ -1,10 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor\Actions;
+namespace Momenoor\FilamentTiptapEditor\Actions;
 
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
-use FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class SourceAction extends Action
 {
@@ -20,8 +20,8 @@ class SourceAction extends Action
         $this
             ->modalHeading(trans('filament-tiptap-editor::source-modal.heading'))
             ->fillForm(fn ($arguments) => ['source' => $arguments['html']])
-            ->form([
-                TextArea::make('source')
+            ->schema([
+                Textarea::make('source')
                     ->label(trans('filament-tiptap-editor::source-modal.labels.source'))
                     ->extraAttributes(['class' => 'source_code_editor']),
             ])

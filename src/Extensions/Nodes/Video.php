@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Extensions\Nodes;
+namespace Momenoor\FilamentTiptapEditor\Extensions\Nodes;
 
 use Tiptap\Core\Node;
 use Tiptap\Utils\HTML;

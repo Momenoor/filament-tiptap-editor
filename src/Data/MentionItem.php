@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Data;
+namespace Momenoor\FilamentTiptapEditor\Data;
 
 class MentionItem
 {

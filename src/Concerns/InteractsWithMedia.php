@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Concerns;
+namespace Momenoor\FilamentTiptapEditor\Concerns;
 
 use Closure;
 

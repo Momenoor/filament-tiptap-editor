@@ -1,10 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor;
+namespace Momenoor\FilamentTiptapEditor;
 
 use Faker\Factory;
 use Faker\Generator;
-use FilamentTiptapEditor\Facades\TiptapConverter;
+use Momenoor\FilamentTiptapEditor\Facades\TiptapConverter;
 use Illuminate\Support\Str;
 
 class TiptapFaker

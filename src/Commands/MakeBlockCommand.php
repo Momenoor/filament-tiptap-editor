@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Commands;
+namespace Momenoor\FilamentTiptapEditor\Commands;
 
 use Filament\Support\Commands\Concerns\CanManipulateFiles;
 use Illuminate\Console\Command;

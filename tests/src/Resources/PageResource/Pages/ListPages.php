@@ -1,10 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests\Resources\PageResource\Pages;
+namespace Momenoor\FilamentTiptapEditor\Tests\Resources\PageResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use FilamentTiptapEditor\Tests\Resources\PageResource;
+use Momenoor\FilamentTiptapEditor\Tests\Resources\PageResource;
 
 class ListPages extends ListRecords
 {

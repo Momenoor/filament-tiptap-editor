@@ -1,15 +1,15 @@
 <?php
 
-namespace FilamentTiptapEditor\Blocks;
+namespace Momenoor\FilamentTiptapEditor\Blocks;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
-use FilamentTiptapEditor\TiptapBlock;
+use Filament\Schemas\Components\Group;
+use Momenoor\FilamentTiptapEditor\TiptapBlock;
 use Illuminate\Support\Str;
 
 class VideoBlock extends TiptapBlock

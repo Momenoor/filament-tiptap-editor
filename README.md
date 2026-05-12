@@ -1,5 +1,8 @@
 > [!Warning]
-> This package is deprecated. As of Filament v4 the native Rich Editor covers most of the use case of this package and it is not needed anymore.
+> This package is build on top of the [Tiptap Editor](https://tiptap.dev/) and awscodes/filament-tiptap-editor to support the [Filament](https://filamentphp.com/) v5.
+>
+> If you are looking for a rich text editor for your Laravel application,.
+
 
 # Filament Tiptap Editor
 
@@ -12,18 +15,18 @@ A Tiptap integration for Filament Admin/Forms.
 Install the package via composer
 
 ```bash
-composer require awcodes/filament-tiptap-editor:"^3.0"
+composer require momenoor/filament-tiptap-editor
 ```
 
 In an effort to align with Filament's theming methodology you will need to use a custom theme to use this plugin.
 
 > **Note**
-> If you have not set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
+> If you have set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
 
 1. Import the plugin's stylesheet and tippy.js stylesheet (if not already included) into your theme's css file.
 
 ```css
-@import '<path-to-vendor>/awcodes/filament-tiptap-editor/resources/css/plugin.css';
+@import '<path-to-vendor>/momenoor/filament-tiptap-editor/resources/css/plugin.css';
 ```
 
 2. Add the plugin's views to your `tailwind.config.js` file.
@@ -31,7 +34,7 @@ In an effort to align with Filament's theming methodology you will need to use a
 ```js
 content: [
     ...
-    '<path-to-vendor>/awcodes/filament-tiptap-editor/resources/**/*.blade.php',
+    '<path-to-vendor>/momenoor/filament-tiptap-editor/resources/**/*.blade.php',
 ]
 ```
 
@@ -52,19 +55,13 @@ module.exports = {
 ```sh
 npm run build
 ```
-
-## Upgrading from 2.x to 3.x
-
-1. Output is now set with an Enum, please update your files to use `TiptapOutput` in all place where you are setting the output, including the config file.
-2. `barebone` profile setting was renamed to `minimal`
-
 ## Usage
 
 The editor extends the default Field class so most other methods available on that class can be used when adding it to a form.
 
 ```php
-use FilamentTiptapEditor\TiptapEditor;
-use FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
 
 TiptapEditor::make('content')
     ->profile('default|simple|minimal|none|custom')
@@ -168,10 +165,10 @@ See: https://tiptap.dev/guide/output
 If you want to change the output format that is stored in the database you can change the default config or specify it in each instance.
 
 ```php
-use FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
 
 TiptapEditor::make('content')
-    ->output(FilamentTiptapEditor\TiptapOutput::Json);
+    ->output(Momenoor\FilamentTiptapEditor\TiptapOutput::Json);
 ```
 
 > **Note**
@@ -208,7 +205,7 @@ This could also be set on a per-instance basis with the `->maxContentWidth()` me
 ```
 
 ```php
-use FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 TiptapEditor::make('content')
     ->maxContentWidth('3xl');
@@ -222,7 +219,7 @@ The Link, Media and Grid Builder modals are built using Filament Form Component 
 
 You may override the default Link modal with your own Action and assign to the `link_action` key in the config file. Make sure the default name for your action is `filament_tiptap_link`.
 
-See `vendor/awcodes/filament-tiptap-editor/src/Actions/LinkAction.php` for implementation.
+See `vendor/momenoor/filament-tiptap-editor/src/Actions/LinkAction.php` for implementation.
 
 ### Media Modal
 
@@ -234,19 +231,19 @@ The Media Modal can make use of 3 attributes not exposed by default:
 - `sizes` goes alongside `srcset` to specify sizing rules for responsive images. [Docs](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)
 - `media` provides support for an arbitrary ID value to better integrate with Media stored within a Database.
 
-See `vendor/awcodes/filament-tiptap-editor/src/Actions/MediaAction.php` for implementation.
+See `vendor/momenoor/filament-tiptap-editor/src/Actions/MediaAction.php` for implementation.
 
 ### Grid Builder Modal
 
 You may override the default Grid Builder modal with your own Action and assign to the `grid_builder_action` key in the config file. Make sure the default name for your action is `filament_tiptap_grid`.
 
-See `vendor/awcodes/filament-tiptap-editor/src/Actions/GridBuilderAction.php` for implementation.
+See `vendor/momenoor/filament-tiptap-editor/src/Actions/GridBuilderAction.php` for implementation.
 
 ### OEmbed Modal
 
 You may override the default OEmbed modal with your own Action and assign to the `oembed_action` key in the config file. Make sure the default name for your action is `filament_tiptap_oembed`.
 
-See `vendor/awcodes/filament-tiptap-editor/src/Actions/OEmbedAction.php` for implementation.
+See `vendor/momenoor/filament-tiptap-editor/src/Actions/OEmbedAction.php` for implementation.
 
 ### Initial height of editor field
 
@@ -335,10 +332,10 @@ TiptapEditor::make('content')
 > To use custom blocks you must store your content as JSON.
 
 ```php
-use FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
 
 TiptapEditor::make('content')
-    ->output(FilamentTiptapEditor\TiptapOutput::Json);
+    ->output(Momenoor\FilamentTiptapEditor\TiptapOutput::Json);
 ```
 
 There are 3 components you need to create a custom block for Tiptap Editor.
@@ -352,7 +349,7 @@ There are 3 components you need to create a custom block for Tiptap Editor.
 #### Block class
 
 ```php
-use FilamentTiptapEditor\TiptapBlock;
+use Momenoor\FilamentTiptapEditor\TiptapBlock;
 
 class BatmanBlock extends TiptapBlock
 {
@@ -381,7 +378,7 @@ class BatmanBlock extends TiptapBlock
 If you simply need a placeholder to output a block that doesn't have settings you can simply not provide a `getFormSchema` method and no modal will be shown and blocks will be directly inserted into the editor.
 
 ```php
-use FilamentTiptapEditor\TiptapBlock;
+use Momenoor\FilamentTiptapEditor\TiptapBlock;
 
 class StaticBlock extends TiptapBlock
 {
@@ -456,7 +453,7 @@ In the register method of a service provider you can add your blocks to the edit
 ```php
 use App\TiptapBlocks\BatmanBlock;
 use App\TiptapBlocks\StaticBlock;
-use FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 TiptapEditor::configureUsing(function (TiptapEditor $component) {
     $component
@@ -472,7 +469,7 @@ By default, the drag and drop blocks panel will be open in the editor. If you wa
 ```php
 use App\TiptapBlocks\BatmanBlock;
 use App\TiptapBlocks\StaticBlock;
-use FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 TiptapEditor::configureUsing(function (TiptapEditor $component) {
     $component
@@ -596,7 +593,7 @@ TiptapEditor::make(name: 'content')
 In many scenarios, you may want to load mentionable items dynamically, such as through an API. To enable this functionality, start by adding the following trait to your Livewire component:
 
 ```php
-use FilamentTiptapEditor\Concerns\HasFormMentions;
+use Momenoor\FilamentTiptapEditor\Concerns\HasFormMentions;
 
 class YourClass
 {

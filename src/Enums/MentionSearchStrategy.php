@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Enums;
+namespace Momenoor\FilamentTiptapEditor\Enums;
 
 enum MentionSearchStrategy: string
 {

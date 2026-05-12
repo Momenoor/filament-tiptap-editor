@@ -1,9 +1,9 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests\Database\Factories;
+namespace Momenoor\FilamentTiptapEditor\Tests\Database\Factories;
 
-use FilamentTiptapEditor\Tests\Models\Page;
-use FilamentTiptapEditor\TiptapFaker;
+use Momenoor\FilamentTiptapEditor\Tests\Models\Page;
+use Momenoor\FilamentTiptapEditor\TiptapFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PageFactory extends Factory

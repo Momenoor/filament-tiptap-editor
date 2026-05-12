@@ -1,9 +1,9 @@
 <?php
 
-namespace FilamentTiptapEditor\Concerns;
+namespace Momenoor\FilamentTiptapEditor\Concerns;
 
 use Closure;
-use FilamentTiptapEditor\Enums\TippyPlacement;
+use Momenoor\FilamentTiptapEditor\Enums\TippyPlacement;
 
 trait InteractsWithMenus
 {

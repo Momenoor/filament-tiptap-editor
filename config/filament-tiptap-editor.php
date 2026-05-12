@@ -1,5 +1,12 @@
 <?php
 
+use Momenoor\FilamentTiptapEditor\Actions\EditMediaAction;
+use Momenoor\FilamentTiptapEditor\Actions\GridBuilderAction;
+use Momenoor\FilamentTiptapEditor\Actions\LinkAction;
+use Momenoor\FilamentTiptapEditor\Actions\MediaAction;
+use Momenoor\FilamentTiptapEditor\Actions\OEmbedAction;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
+
 return [
     'direction' => 'ltr',
     'max_content_width' => '5xl',
@@ -33,12 +40,11 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'media_action' => FilamentTiptapEditor\Actions\MediaAction::class,
-    //    'media_action' => Awcodes\Curator\Actions\MediaAction::class,
-    'edit_media_action' => FilamentTiptapEditor\Actions\EditMediaAction::class,
-    'link_action' => FilamentTiptapEditor\Actions\LinkAction::class,
-    'grid_builder_action' => FilamentTiptapEditor\Actions\GridBuilderAction::class,
-    'oembed_action' => FilamentTiptapEditor\Actions\OEmbedAction::class,
+    'media_action' => MediaAction::class,
+    'edit_media_action' => EditMediaAction::class,
+    'link_action' => LinkAction::class,
+    'grid_builder_action' => GridBuilderAction::class,
+    'oembed_action' => OEmbedAction::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +55,7 @@ return [
     |
     | See: https://tiptap.dev/guide/output
     */
-    'output' => FilamentTiptapEditor\Enums\TiptapOutput::Html,
+    'output' => TiptapOutput::Html,
 
     /*
     |--------------------------------------------------------------------------

@@ -1,19 +1,20 @@
 <?php
 
-namespace FilamentTiptapEditor;
+namespace Momenoor\FilamentTiptapEditor;
 
 use Closure;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Concerns\HasExtraInputAttributes;
 use Filament\Forms\Components\Concerns\HasPlaceholder;
 use Filament\Forms\Components\Field;
 use Filament\Support\Concerns\HasExtraAlpineAttributes;
-use FilamentTiptapEditor\Actions\SourceAction;
-use FilamentTiptapEditor\Concerns\CanStoreOutput;
-use FilamentTiptapEditor\Concerns\HasCustomActions;
-use FilamentTiptapEditor\Concerns\HasMentions;
-use FilamentTiptapEditor\Concerns\InteractsWithMedia;
-use FilamentTiptapEditor\Concerns\InteractsWithMenus;
+use Momenoor\FilamentTiptapEditor\Actions\SourceAction;
+use Momenoor\FilamentTiptapEditor\Concerns\CanStoreOutput;
+use Momenoor\FilamentTiptapEditor\Concerns\HasCustomActions;
+use Momenoor\FilamentTiptapEditor\Concerns\HasMentions;
+use Momenoor\FilamentTiptapEditor\Concerns\InteractsWithMedia;
+use Momenoor\FilamentTiptapEditor\Concerns\InteractsWithMenus;
+use Filament\Support\Components\Attributes\ExposedLivewireMethod;
 use Illuminate\Support\Js;
 use Illuminate\Support\Str;
 use JsonException;
@@ -56,6 +57,8 @@ class TiptapEditor extends Field
     protected array | Closure | null $nodePlaceholders = null;
 
     protected bool | Closure | null $showOnlyCurrentPlaceholder = false;
+
+    protected array $listeners = [];
 
     protected array $gridLayouts = [
         'two-columns',
@@ -183,6 +186,35 @@ class TiptapEditor extends Field
         ]);
     }
 
+    public function registerListeners(array $listeners): static
+    {
+        $this->listeners = array_merge($this->listeners, $listeners);
+
+        return $this;
+    }
+
+    public function getListeners(): array
+    {
+        return $this->listeners;
+    }
+
+    #[ExposedLivewireMethod]
+    public function dispatchFormEvent(string $name, string $statePath, array $arguments = []): void
+    {
+        $listeners = $this->getListeners();
+
+        if (! array_key_exists($name, $listeners)) {
+            return;
+        }
+
+        foreach ($listeners[$name] as $listener) {
+            $this->evaluate($listener, [
+                'arguments' => $arguments,
+                'statePath' => $statePath,
+            ]);
+        }
+    }
+
     public function getCustomListener(string $name, TiptapEditor $component, string $statePath, array $arguments = []): void
     {
         if ($this->verifyListener($component, $statePath)) {
@@ -262,7 +294,7 @@ class TiptapEditor extends Field
     public function getInsertBlockAction(): Action
     {
         return Action::make('insertBlock')
-            ->form(function (TiptapEditor $component, Component $livewire, array $arguments): ?array {
+            ->schema(function (TiptapEditor $component, Component $livewire, array $arguments): ?array {
                 $block = $component->getBlock($arguments['type']);
 
                 if (empty($block->getFormSchema())) {
@@ -338,7 +370,7 @@ class TiptapEditor extends Field
             ->slideOver(function (TiptapEditor $component, Component $livewire, array $arguments): string {
                 return isset($arguments['type']) && $component->getBlock($arguments['type'])->isSlideOver();
             })
-            ->form(function (TiptapEditor $component, Component $livewire, array $arguments): array {
+            ->schema(function (TiptapEditor $component, Component $livewire, array $arguments): array {
                 return $component
                     ->getBlock($arguments['type'])
                     ->getFormSchema();
@@ -436,7 +468,7 @@ class TiptapEditor extends Field
     }
 
     /**
-     * Show placeholder decorations only in currently selected node.
+     * Show placeholder decorations only in the currently selected node.
      *
      * @return $this
      */

@@ -7,6 +7,5 @@
         src="{{ $url }}"
         width="{{ $width }}"
         height="{{ $height }}"
-        style="aspect-ratio:{{ $width }}/{{ $height }}; width: 100%; height: auto;"
-    />
+        style="aspect-ratio:{{ $width }}/{{ $height }}; width: 100%; height: auto;"></iframe>
 </div>

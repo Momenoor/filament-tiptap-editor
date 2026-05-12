@@ -1,9 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor\Concerns;
+namespace Momenoor\FilamentTiptapEditor\Concerns;
 
 use Closure;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
+
 
 trait HasCustomActions
 {

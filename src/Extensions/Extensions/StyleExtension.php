@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Extensions\Extensions;
+namespace Momenoor\FilamentTiptapEditor\Extensions\Extensions;
 
 use Tiptap\Core\Extension;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Extensions\Marks;
+namespace Momenoor\FilamentTiptapEditor\Extensions\Marks;
 
 use Tiptap\Marks\Link as BaseLink;
 

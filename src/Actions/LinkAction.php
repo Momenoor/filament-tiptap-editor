@@ -1,16 +1,16 @@
 <?php
 
-namespace FilamentTiptapEditor\Actions;
+namespace Momenoor\FilamentTiptapEditor\Actions;
 
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Grid;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class LinkAction extends Action
 {
@@ -34,13 +34,13 @@ class LinkAction extends Action
                 'referrerpolicy' => '',
                 'as_button' => false,
                 'button_theme' => '',
-            ])->mountUsing(function (ComponentContainer $form, array $arguments) {
+            ])->mountUsing(function (Schema $form, array $arguments) {
                 $form->fill($arguments);
             })->modalHeading(function (array $arguments) {
                 $context = blank($arguments['href']) ? 'insert' : 'update';
 
                 return trans('filament-tiptap-editor::link-modal.heading.' . $context);
-            })->form([
+            })->schema([
                 Grid::make(['md' => 3])
                     ->schema([
                         TextInput::make('href')

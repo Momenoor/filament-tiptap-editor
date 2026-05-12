@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FilamentTiptapEditor\Extensions\Nodes;
+namespace Momenoor\FilamentTiptapEditor\Extensions\Nodes;
 
 use Tiptap\Core\Node;
 

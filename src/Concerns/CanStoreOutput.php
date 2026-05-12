@@ -1,9 +1,9 @@
 <?php
 
-namespace FilamentTiptapEditor\Concerns;
+namespace Momenoor\FilamentTiptapEditor\Concerns;
 
-use FilamentTiptapEditor\Enums\TiptapOutput;
-use FilamentTiptapEditor\Facades\TiptapConverter;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\Facades\TiptapConverter;
 
 trait CanStoreOutput
 {

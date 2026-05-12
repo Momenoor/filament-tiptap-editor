@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests;
+namespace Momenoor\FilamentTiptapEditor\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
@@ -12,15 +12,26 @@ use Filament\Notifications\NotificationsServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
-use FilamentTiptapEditor\FilamentTiptapEditorServiceProvider;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Support\ViewErrorBag;
 use Livewire\LivewireServiceProvider;
+use Momenoor\FilamentTiptapEditor\FilamentTiptapEditorServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 class TestCase extends Orchestra
 {
     use LazilyRefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->app['config']->set('session.driver', 'array');
+
+        $this->startSession();
+
+        session()->put('errors', new ViewErrorBag);
+    }
 
     protected function getPackageProviders($app): array
     {

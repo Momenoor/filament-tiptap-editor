@@ -1,13 +1,12 @@
 <?php
 
-namespace FilamentTiptapEditor;
+namespace Momenoor\FilamentTiptapEditor;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
-use FilamentTiptapEditor\Commands\MakeBlockCommand;
-use Illuminate\Support\Facades\Vite;
+use Momenoor\FilamentTiptapEditor\Commands\MakeBlockCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -31,20 +30,26 @@ class FilamentTiptapEditorServiceProvider extends PackageServiceProvider
         $this->app->singleton('tiptap-converter', function () {
             return new TiptapConverter;
         });
+    }
+
+    public function packageBooted(): void
+    {
 
         $assets = [
             AlpineComponent::make('tiptap', __DIR__ . '/../resources/dist/filament-tiptap-editor.js'),
+            // 'loadedOnRequest' is great for performance in v5
             Css::make('tiptap', __DIR__ . '/../resources/dist/filament-tiptap-editor.css')->loadedOnRequest(),
         ];
 
-        if (config('filament-tiptap-editor.extensions_script')) {
-            $assets[] = Js::make('tiptap-custom-extension-scripts', Vite::asset(config('filament-tiptap-editor.extensions_script')));
+        // Handling custom extensions
+        if ($extScript = config('filament-tiptap-editor.extensions_script')) {
+            $assets[] = Js::make('tiptap-custom-extension-scripts', $extScript);
         }
 
-        if (config('filament-tiptap-editor.extensions_styles')) {
-            $assets[] = Css::make('tiptap-custom-extension-styles', Vite::asset(config('filament-tiptap-editor.extensions_styles')));
+        if ($extStyles = config('filament-tiptap-editor.extensions_styles')) {
+            $assets[] = Css::make('tiptap-custom-extension-styles', $extStyles);
         }
 
-        FilamentAsset::register($assets, 'awcodes/tiptap-editor');
+        FilamentAsset::register($assets, 'momenoor/filament-tiptap-editor');
     }
 }

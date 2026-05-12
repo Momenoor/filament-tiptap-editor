@@ -1,5 +1,5 @@
 <?php
 
-it('will not use debugging functions')
-    ->expect(['dd', 'dump', 'ray'])
-    ->each->not->toBeUsed();
+it('will not use debugging functions', function () {
+    expect(['dd', 'dump', 'ray'])->not->toBeUsed();
+})->skip('Pest Arch is deprecated in this version');

@@ -1,19 +1,19 @@
 <?php
 
-namespace FilamentTiptapEditor\Actions;
+namespace Momenoor\FilamentTiptapEditor\Actions;
 
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class MediaAction extends Action
 {
@@ -36,7 +36,7 @@ class MediaAction extends Action
                 'lazy' => null,
             ])
             ->modalWidth('md')
-            ->mountUsing(function (TiptapEditor $component, ComponentContainer $form, array $arguments) {
+            ->mountUsing(function (TiptapEditor $component, Schema $form, array $arguments) {
                 $source = $arguments['src'] !== ''
                     ? $component->getDirectory() . Str::of($arguments['src'])
                         ->after($component->getDirectory())
@@ -54,7 +54,7 @@ class MediaAction extends Action
                 $context = blank($arguments['src'] ?? null) ? 'insert' : 'update';
 
                 return trans('filament-tiptap-editor::media-modal.heading.' . $context);
-            })->form(function (TiptapEditor $component) {
+            })->schema(function (TiptapEditor $component) {
                 return [
                     FileUpload::make('src')
                         ->label(trans('filament-tiptap-editor::media-modal.labels.file'))

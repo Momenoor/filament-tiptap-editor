@@ -1,10 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor;
+namespace Momenoor\FilamentTiptapEditor;
 
-use FilamentTiptapEditor\Extensions\Extensions;
-use FilamentTiptapEditor\Extensions\Marks;
-use FilamentTiptapEditor\Extensions\Nodes;
+use Momenoor\FilamentTiptapEditor\Extensions\Extensions;
+use Momenoor\FilamentTiptapEditor\Extensions\Marks;
+use Momenoor\FilamentTiptapEditor\Extensions\Nodes;
 use Tiptap\Editor;
 use Tiptap\Extensions\StarterKit;
 use Tiptap\Marks\Highlight;

@@ -1,18 +1,20 @@
 <?php
 
+namespace Momenoor\FilamentTiptapEditor\Tests;
+
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use FilamentTiptapEditor\Enums\TiptapOutput;
-use FilamentTiptapEditor\Tests\Fixtures\Livewire as LivewireFixture;
-use FilamentTiptapEditor\Tests\Models\Page;
-use FilamentTiptapEditor\Tests\Resources\PageResource\Pages\CreatePage;
-use FilamentTiptapEditor\Tests\Resources\PageResource\Pages\EditPage;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Schemas\Schema;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\Tests\Fixtures\Livewire as LivewireFixture;
+use Momenoor\FilamentTiptapEditor\Tests\Models\Page;
+use Momenoor\FilamentTiptapEditor\Tests\Resources\PageResource\Pages\CreatePage;
+use Momenoor\FilamentTiptapEditor\Tests\Resources\PageResource\Pages\EditPage;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 use Illuminate\Contracts\View\View;
 use Livewire\Livewire;
 
 it('has editor field', function () {
-    Livewire::test(TestComponentWithForm::class)
+    Livewire::test(FormsTest::class)
         ->assertFormFieldExists('html_content')
         ->assertFormFieldExists('json_content')
         ->assertFormFieldExists('text_content');
@@ -92,11 +94,11 @@ it('can create null record', function () {
         ->json_content->toBeNull();
 });
 
-class TestComponentWithForm extends LivewireFixture
+class FormsTest extends LivewireFixture
 {
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->statePath('data')
             ->model(Page::class)
             ->schema([

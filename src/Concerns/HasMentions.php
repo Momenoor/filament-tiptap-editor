@@ -1,10 +1,10 @@
 <?php
 
-namespace FilamentTiptapEditor\Concerns;
+namespace Momenoor\FilamentTiptapEditor\Concerns;
 
 use Closure;
-use FilamentTiptapEditor\Data\MentionItem;
-use FilamentTiptapEditor\Enums\MentionSearchStrategy;
+use Momenoor\FilamentTiptapEditor\Data\MentionItem;
+use Momenoor\FilamentTiptapEditor\Enums\MentionSearchStrategy;
 use Illuminate\Contracts\Support\Arrayable;
 
 trait HasMentions

@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Extensions\Nodes;
+namespace Momenoor\FilamentTiptapEditor\Extensions\Nodes;
 
 use Tiptap\Nodes\Image as BaseImage;
 

@@ -1,26 +1,30 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests\Resources;
+namespace Momenoor\FilamentTiptapEditor\Tests\Resources;
 
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FilamentTiptapEditor\Enums\TiptapOutput;
-use FilamentTiptapEditor\Tests\Models\Page;
-use FilamentTiptapEditor\Tests\Resources\PageResource\Pages;
-use FilamentTiptapEditor\TiptapEditor;
+use Momenoor\FilamentTiptapEditor\Enums\TiptapOutput;
+use Momenoor\FilamentTiptapEditor\Tests\Models\Page;
+use Momenoor\FilamentTiptapEditor\Tests\Resources\PageResource\Pages;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | null | \BackedEnum $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Forms\Components\TextInput::make('title'),
                 TiptapEditor::make('html_content')
@@ -41,16 +45,16 @@ class PageResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ]);
     }
 

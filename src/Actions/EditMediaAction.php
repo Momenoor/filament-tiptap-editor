@@ -1,20 +1,20 @@
 <?php
 
-namespace FilamentTiptapEditor\Actions;
+namespace Momenoor\FilamentTiptapEditor\Actions;
 
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\View;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\View;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class EditMediaAction extends Action
 {
@@ -37,7 +37,7 @@ class EditMediaAction extends Action
                 'lazy' => null,
             ])
             ->modalWidth('md')
-            ->mountUsing(function (TiptapEditor $component, ComponentContainer $form, array $arguments) {
+            ->mountUsing(function (TiptapEditor $component, Schema $form, array $arguments) {
                 $source = $arguments['src'] !== ''
                     ? $component->getDirectory() . Str::of($arguments['src'])
                         ->after($component->getDirectory())
@@ -57,7 +57,7 @@ class EditMediaAction extends Action
 
                 return trans('filament-tiptap-editor::media-modal.heading.' . $context);
             })
-            ->form(function (TiptapEditor $component, array $arguments) {
+            ->schema(function (TiptapEditor $component, array $arguments) {
                 return [
                     View::make('filament-tiptap-editor::curator-preview')
                         ->hidden(! $this->isUsingCurator())
@@ -78,10 +78,10 @@ class EditMediaAction extends Action
                         ->maxFiles(1)
                         ->maxSize($component->getMaxSize())
                         ->minSize($component->getMinSize())
-                        ->imageResizeMode($component->getImageResizeMode())
-                        ->imageCropAspectRatio($component->getImageCropAspectRatio())
-                        ->imageResizeTargetWidth($component->getImageResizeTargetWidth())
-                        ->imageResizeTargetHeight($component->getImageResizeTargetHeight())
+                        ->automaticallyResizeImagesMode($component->getImageResizeMode())
+                        ->automaticallyCropImagesToAspectRatio($component->getImageCropAspectRatio())
+                        ->automaticallyResizeImagesToWidth($component->getImageResizeTargetWidth())
+                        ->automaticallyResizeImagesToWidth($component->getImageResizeTargetHeight())
                         ->required()
                         ->live()
                         ->afterStateUpdated(function (TemporaryUploadedFile $state, callable $set) {
@@ -168,6 +168,6 @@ class EditMediaAction extends Action
 
     private function isUsingCurator(): bool
     {
-        return config('filament-tiptap-editor.media_action') === 'Awcodes\Curator\Actions\MediaAction';
+        return config('filament-tiptap-editor.media_action') === 'Momenoor\Curator\Actions\MediaAction';
     }
 }

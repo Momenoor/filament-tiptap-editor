@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Facades;
+namespace Momenoor\FilamentTiptapEditor\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string asJSON(string|array $content, bool $decoded)
  * @method static string asText(string|array $content)
  *
- * @see \FilamentTiptapEditor\TiptapConverter
+ * @see \Momenoor\FilamentTiptapEditor\TiptapConverter
  */
 class TiptapConverter extends Facade
 {

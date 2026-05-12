@@ -1,6 +1,6 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests\Fixtures;
+namespace Momenoor\FilamentTiptapEditor\Tests\Fixtures;
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;

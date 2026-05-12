@@ -38,13 +38,13 @@
                 ])
                 x-data="{}"
                 @if (! $shouldDisableStylesheet())
-                    x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('tiptap', 'awcodes/tiptap-editor'))]"
+                    x-load-css="[@js(\Filament\Support\Facades\FilamentAsset::getStyleHref('tiptap', 'momenoor/tiptap-editor'))]"
                 @endif
             >
                 <div
                     wire:ignore
                     x-load
-                    x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('tiptap', 'awcodes/tiptap-editor') }}"
+                    x-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('tiptap', 'momenoor/tiptap-editor') }}"
                     class="relative z-0 tiptap-wrapper rounded-md bg-white dark:bg-gray-900 focus-within:ring focus-within:ring-primary-500 focus-within:z-10"
                     x-bind:class="{ 'tiptap-fullscreen': fullScreenMode }"
                     x-data="tiptap({

@@ -1,8 +1,8 @@
 <?php
 
-namespace FilamentTiptapEditor\Tests\Models;
+namespace Momenoor\FilamentTiptapEditor\Tests\Models;
 
-use FilamentTiptapEditor\Tests\Database\Factories\PageFactory;
+use Momenoor\FilamentTiptapEditor\Tests\Database\Factories\PageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace FilamentTiptapEditor\Actions;
+namespace Momenoor\FilamentTiptapEditor\Actions;
 
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Grid;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ViewField;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Schemas\Components\Grid;
+use Momenoor\FilamentTiptapEditor\TiptapEditor;
 
 class GridBuilderAction extends Action
 {
